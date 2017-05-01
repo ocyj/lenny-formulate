@@ -1,5 +1,5 @@
 import unittest
-import line
+import board
 
 
 class TestLine(unittest.TestCase):
@@ -21,10 +21,7 @@ class TestLine(unittest.TestCase):
 
     def test_swipe(self):
         for i, o in self.io_pairs:
-            self.assertEqual(self, line.swipe(i), o)
-
-    def test_lol(self):
-        self.assertEqual(line.lol(), -1)
+            self.assertEqual(self, board.swipe(i), o)
 
 if __name__ == '__main__':
     unittest.main()
