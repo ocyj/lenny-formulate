@@ -1,4 +1,6 @@
-class Line():
+def swipe(line):
+    return None
 
-    def __init__(self):
-        
+
+def lol():
+    return -1
