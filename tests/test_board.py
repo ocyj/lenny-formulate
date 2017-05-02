@@ -5,10 +5,10 @@ import board
 class TestLine(unittest.TestCase):
 
     io_pairs = (
-    # INPUT    EXPECTED OUTPUT
-    # All zeroes:
+        # INPUT    EXPECTED OUTPUT
+        # All zeroes:
         ([0, 0, 0, 0], [0, 0, 0, 0]),
-    # One distinct tile, three zeroes
+        # One distinct tile, three zeroes
         ([0, 0, 0, 1], [0, 0, 0, 1]),
         ([0, 0, 1, 0], [0, 0, 0, 1]),
         ([0, 1, 0, 0], [0, 0, 0, 1]),
