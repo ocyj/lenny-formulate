@@ -21,7 +21,9 @@ class TestLine(unittest.TestCase):
 
     def test_swipe(self):
         for i, o in self.io_pairs:
-            self.assertEqual(self, board.swipe(i), o)
+            #self.assertEqual(self, board.swipe(i), o)
+            #self.assertTrue(self, board.swipe(i) == o)
+            self.assertListEqual(self, board.swipe(i), o)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,24 +1,33 @@
-
 def swipe(line):
-    line = list(line)
-    result = list(len(line))
     left = []
     right = []
-    #for element in line.
-      #get last element from line
-      # if its a zero, put it at left in result
-      # if its not zero, save it to active
-      # if its
+    active = None
+    zeroes = 0
+    for element in reversed(line):
+        if element == 0:
+            left.append(0)
+            zeroes += 1
+        elif None is active:
+            active = element
+        elif element is active:
+            right = [element+1] + right
+            active = None
+            left.append(0)
+            zeroes += 1
+        elif element is not active:
+            right = [active] + right
+            active = element
+    if active is not None:
+        right = [active] + right
+    return zeroes, left + right
 
 
+class Board:
+    def __init__(self, size):
+        self.size = size
+        self.tiles = [0]*size*size
+        # randomize first tiles
 
-
-
-
-
-    def trim_zeroes(l):
-        l = list(l)
-        while len(l) > 0 and l[-1] == 0:
-            l.pop()
-        return l
-
+    def swipe_right(self):
+        for i in range(self.size):
+            self.tiles[i]
