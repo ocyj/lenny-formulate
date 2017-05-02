@@ -5,7 +5,7 @@ import board
 class TestLine(unittest.TestCase):
 
     io_pairs = (
-        # INPUT    EXPECTED OUTPUT
+        # INPUT,  EXPECTED OUTPUT,  # OF ZEROES IN OUTPUT
         # All zeroes:
         ([0, 0, 0, 0], [0, 0, 0, 0], 4),
         # One distinct tile, three zeroes
@@ -25,12 +25,10 @@ class TestLine(unittest.TestCase):
         ([2, 0, 2, 2], [0, 0, 2, 3], 2),
         ([2, 2, 0, 2], [0, 0, 2, 3], 2),
         ([2, 2, 2, 0], [0, 0, 2, 3], 2),
-        #
         # One distinct tile, no zeroes:
         ([1, 1, 1, 1], [0, 0, 2, 2], 2),
         ([2, 2, 2, 2], [0, 0, 3, 3], 2),
         ([3, 3, 3, 3], [0, 0, 4, 4], 2),
-        #
         # Two distinct tiles, two zeroes:
         ([0, 0, 1, 2], [0, 0, 1, 2], 2),
         ([0, 1, 2, 0], [0, 0, 1, 2], 2),
@@ -46,7 +44,6 @@ class TestLine(unittest.TestCase):
         ([0, 0, 2, 3], [0, 0, 2, 3], 2),
         ([0, 1, 0, 3], [0, 0, 1, 3], 2),
         ([1, 0, 0, 3], [0, 0, 1, 3], 2),
-        #
         # Two distinct tiles, one zero:
         ([0, 1, 1, 2], [0, 0, 2, 2], 2),
         ([0, 1, 2, 1], [0, 1, 2, 1], 1),
@@ -93,7 +90,6 @@ class TestLine(unittest.TestCase):
         ([3, 1, 1, 0], [0, 0, 3, 2], 2),
         ([3, 3, 1, 0], [0, 0, 4, 1], 2),
         ([3, 1, 3, 0], [0, 3, 1, 3], 1),
-        #
         # Three distinct tiles one zero:
         ([0, 1, 2, 3], [0, 1, 2, 3], 1),
         ([1, 0, 2, 3], [0, 1, 2, 3], 1),
@@ -107,7 +103,6 @@ class TestLine(unittest.TestCase):
         ([3, 0, 2, 1], [0, 3, 2, 1], 1),
         ([3, 2, 0, 1], [0, 3, 2, 1], 1),
         ([3, 2, 1, 0], [0, 3, 2, 1], 1),
-        #
         # Three distinct tiles no zeroes:
         ([1, 1, 2, 3], [0, 2, 2, 3], 1),
         ([1, 3, 1, 2], [1, 3, 1, 2], 0),
@@ -115,8 +110,8 @@ class TestLine(unittest.TestCase):
     )
 
     def test_swipe(self):
-        for i, line_expected, zeroes_expected in self.io_pairs:
-            zeroes_actual, line_actual = board.swipe(i)
+        for inpt, line_expected, zeroes_expected in self.io_pairs:
+            zeroes_actual, line_actual = board.swipe(inpt)
             self.assertEqual(line_actual, line_expected)
             self.assertFalse(line_actual is line_expected)
             self.assertEqual(zeroes_actual, zeroes_expected)
