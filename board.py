@@ -28,6 +28,14 @@ class Board:
         self.tiles = [0]*size*size
         # randomize first tiles
 
+    def _get_tile(self,row, column):
+        # Column major order
+        index = self.size*column + row
+        return self.tiles(index)
+
+
     def swipe_right(self):
         for i in range(self.size):
             self.tiles[i]
+
+
