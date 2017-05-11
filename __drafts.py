@@ -7,6 +7,11 @@ tiles = [
     "30:12", "31:13", "32:14", "33:15"
 ]
 
+col1 = ["A", "B", "C", "D"]
+col2 = ["E", "F", "G", "H"]
+col3 = ["I", "J", "K", "L"]
+col4 = ["M", "N", "O", "P"]
+
 size = 4
 
 col_idx = [range(i, size*size, size) for i in range(size)]
@@ -29,3 +34,30 @@ print("------")
 r = col_idx[1]
 print([tiles[i] for i in r])
 print([tiles[i] for i in reversed(r)])
+
+
+print("----------")
+print("rows and columns in normal order:")
+rows = [[tiles[i] for i in r] for r in row_idx]
+cols = [[tiles[i] for i in c] for c in col_idx]
+print(rows)
+print(cols)
+print("-----------")
+print("rows and columns in reversed order:")
+rows_rev = [[tiles[i] for i in reversed(r)] for r in row_idx]
+cols_rev = [[tiles[i] for i in reversed(c)] for c in col_idx]
+print(rows_rev)
+print(cols_rev)
+
+
+# Try to create new_tiles s.t. it uses col1, col2, etc as the new columns.
+# That is: new_tiles = [A, E, I,...,B,F,J,...] etc.
+new_tiles = [0]*size*size
+for i,c_j in enumerate(col_idx[0]):
+    new_tiles[c_j] = col1[i]
+for i,c_j in enumerate(col_idx[1]):
+    new_tiles[c_j] = col2[i]
+
+print(new_tiles)
+
+print(tiles())
