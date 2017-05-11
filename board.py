@@ -26,16 +26,17 @@ class Board:
     def __init__(self, size):
         self.size = size
         self.tiles = [0]*size*size
+        self.col_idx = [range(i, size*size, size) for i in range(size)]
+        self.row_idx = [range(i*size, i*size+size) for i in range(size)]
         # randomize first tiles
 
-    def _get_tile(self,row, column):
-        # Column major order
-        index = self.size*column + row
-        return self.tiles(index)
+    def swipe_down(self):
+        new_tiles = []*self.size**2
+        for c in self.col_idx:
+            print(swipe([self.tiles[i] for i in c]))
 
-
-    def swipe_right(self):
-        for i in range(self.size):
-            self.tiles[i]
-
+if __name__ == "__main__":
+    b = Board(size=4)
+    b.tiles = [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1]
+    b.swipe_down()
 
