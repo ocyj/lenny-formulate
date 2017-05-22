@@ -7,6 +7,13 @@ tiles = [
     "30:12", "31:13", "32:14", "33:15"
 ]
 
+tiles_act = [
+        0,0,0,1,
+        0,1,1,0,
+        0,1,1,1,
+        1,1,0,0
+]
+
 col1 = ["A", "B", "C", "D"]
 col2 = ["E", "F", "G", "H"]
 col3 = ["I", "J", "K", "L"]
@@ -48,6 +55,7 @@ rows_rev = [[tiles[i] for i in reversed(r)] for r in row_idx]
 cols_rev = [[tiles[i] for i in reversed(c)] for c in col_idx]
 print(rows_rev)
 print(cols_rev)
+print("-----------")
 
 
 # Try to create new_tiles s.t. it uses col1, col2, etc as the new columns.
@@ -57,7 +65,19 @@ for i,c_j in enumerate(col_idx[0]):
     new_tiles[c_j] = col1[i]
 for i,c_j in enumerate(col_idx[1]):
     new_tiles[c_j] = col2[i]
+for i,c_j in enumerate(col_idx[2]):
+    new_tiles[c_j] = col3[i]
+for i,c_j in enumerate(col_idx[3]):
+    new_tiles[c_j] = col4[i]
+
 
 print(new_tiles)
+print("--------")
+rows_act = [board.swipe([tiles_act[i] for i in r], False) for r in row_idx]
+print(rows_act)
 
-print(tiles())
+new_tiles = [0]*size**2
+for k,new_row in enumerate(rows_act):
+    for i,r_i in enumerate(row_idx[k]):
+        new_tiles[r_i] = new_row[i]
+print(new_tiles)

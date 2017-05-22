@@ -109,12 +109,18 @@ class TestLine(unittest.TestCase):
         ([1, 2, 3, 1], [1, 2, 3, 1], 0)
     )
 
-    def test_swipe(self):
+    def test_swipe_with_return_zeroes(self):
         for inpt, line_expected, zeroes_expected in self.io_pairs:
             zeroes_actual, line_actual = board.swipe(inpt)
             self.assertEqual(line_actual, line_expected)
             self.assertFalse(line_actual is line_expected)
             self.assertEqual(zeroes_actual, zeroes_expected)
+    def test_swipe_without_return_zeroes(self):
+        for inpt, line_expected, zeroes_expected in self.io_pairs:
+            line_actual = board.swipe(inpt, False)
+            self.assertEqual(line_actual, line_expected)
+            self.assertFalse(line_actual is line_expected)
+
 
 if __name__ == '__main__':
     unittest.main()

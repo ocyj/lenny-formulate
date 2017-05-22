@@ -1,4 +1,4 @@
-def swipe(line):
+def swipe(line, return_zeroes = True):
     left = []
     right = []
     active = None
@@ -19,8 +19,9 @@ def swipe(line):
             active = element
     if active is not None:
         right = [active] + right
-    return zeroes, left + right
-
+    if return_zeroes:
+        return zeroes, left + right
+    return left + right
 
 class Board:
     def __init__(self, size):
