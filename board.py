@@ -3,6 +3,7 @@ def swipe(line, return_zeroes = True):
     right = []
     active = None
     zeroes = 0
+    collapsed = False
     for element in reversed(line):
         if element == 0:
             left.append(0)
@@ -10,6 +11,7 @@ def swipe(line, return_zeroes = True):
         elif None is active:
             active = element
         elif element is active:
+            collapsed = True
             right = [element+1] + right
             active = None
             left.append(0)
@@ -19,6 +21,7 @@ def swipe(line, return_zeroes = True):
             active = element
     if active is not None:
         right = [active] + right
+    # if collapsed or not(zeroes == len(line)) --> line changed!
     if return_zeroes:
         return zeroes, left + right
     return left + right
