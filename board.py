@@ -39,8 +39,16 @@ class Board:
         for c in self.col_idx:
             print(swipe([self.tiles[i] for i in c]))
 
+    def __str__(self):
+        rep = ""
+        for r in self.row_idx:
+            l = map(str, [self.tiles[i] for i  in r])
+            rep += "  ".join(l) + "\n"
+        return rep
+
 if __name__ == "__main__":
     b = Board(size=4)
     b.tiles = [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1]
+    print(b)
     b.swipe_down()
 
