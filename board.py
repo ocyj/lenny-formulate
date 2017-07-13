@@ -26,18 +26,30 @@ def swipe(line, return_zeroes = True):
         return zeroes, left + right
     return left + right
 
+
 class Board:
     def __init__(self, size):
         self.size = size
         self.tiles = [0]*size*size
+
+        # uses row major order
+        #             eg [0, 4, 8, 12], [1, 5, 9, 13], ...
         self.col_idx = [range(i, size*size, size) for i in range(size)]
+
+        #             eg [0, 1, 2, 3], [4, 5, 6, 7], ...
         self.row_idx = [range(i*size, i*size+size) for i in range(size)]
-        # randomize first tiles
+
+        # TODO: randomize first tiles
 
     def swipe_down(self):
         new_tiles = []*self.size**2
         for c in self.col_idx:
-            print(swipe([self.tiles[i] for i in c]))
+            pass
+
+    def _update_tiles(self, new_tiles, indices):
+        for index_value in zip(indices, new_tiles):
+            i,v = index_value
+            self.tiles[i] = v
 
     def __str__(self):
         rep = ""

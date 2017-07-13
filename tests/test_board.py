@@ -115,11 +115,15 @@ class TestLine(unittest.TestCase):
             self.assertEqual(line_actual, line_expected)
             self.assertFalse(line_actual is line_expected)
             self.assertEqual(zeroes_actual, zeroes_expected)
+
     def test_swipe_without_return_zeroes(self):
         for inpt, line_expected, zeroes_expected in self.io_pairs:
             line_actual = board.swipe(inpt, False)
             self.assertEqual(line_actual, line_expected)
             self.assertFalse(line_actual is line_expected)
+
+    def test_update_tiles(self):
+        pass
 
 
 if __name__ == '__main__':
