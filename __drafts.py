@@ -1,63 +1,43 @@
 import board
-# Column major order
-tiles = [
-    "00:00", "01:01", "02:02", "03:03",
-    "10:04", "11:05", "12:06", "13:07",
-    "20:08", "21:09", "22:10", "23:11",
-    "30:12", "31:13", "32:14", "33:15"
-]
-
-col1 = ["A", "B", "C", "D"]
-col2 = ["E", "F", "G", "H"]
-col3 = ["I", "J", "K", "L"]
-col4 = ["M", "N", "O", "P"]
-
-size = 4
-
-col_idx = [range(i, size*size, size) for i in range(size)]
-row_idx = [range(i*size, i*size+size) for i in range(size)]
-
-for r in row_idx:
-    for i in r:
-        print(i, end = " ")
-    print("")
-
-print("------")
-
-for c in col_idx:
-    for i in c:
-        print(i, end = " ")
-    print("")
-
-print("------")
-
-r = col_idx[1]
-print([tiles[i] for i in r])
-print([tiles[i] for i in reversed(r)])
+import random
 
 
-print("----------")
-print("rows and columns in normal order:")
-rows = [[tiles[i] for i in r] for r in row_idx]
-cols = [[tiles[i] for i in c] for c in col_idx]
-print(rows)
-print(cols)
-print("-----------")
-print("rows and columns in reversed order:")
-rows_rev = [[tiles[i] for i in reversed(r)] for r in row_idx]
-cols_rev = [[tiles[i] for i in reversed(c)] for c in col_idx]
-print(rows_rev)
-print(cols_rev)
+def main():
+    tiles = [
+        0,0,0,1,
+        0,1,1,0,
+        0,1,1,1,
+        1,1,0,0
+    ]
+    size = 4
+    col_idx = [range(i, size*size, size) for i in range(size)]
+    row_idx = [range(i*size, i*size+size) for i in range(size)]
+    print("--------")
+
+    zero_indices = []
+    for i, row in enumerate(row_idx):
+        n_zeroes, swiped = board.swipe([tiles[j] for j in row])
+        print(n_zeroes, swiped)
+        zero_indices += row[0:n_zeroes]
+    new_zero = random.choice(zero_indices)
+    print(zero_indices, " choose ", new_zero)
 
 
-# Try to create new_tiles s.t. it uses col1, col2, etc as the new columns.
-# That is: new_tiles = [A, E, I,...,B,F,J,...] etc.
-new_tiles = [0]*size*size
-for i,c_j in enumerate(col_idx[0]):
-    new_tiles[c_j] = col1[i]
-for i,c_j in enumerate(col_idx[1]):
-    new_tiles[c_j] = col2[i]
+def update_tiles(new_tiles, indices):
+    col_idx = [1, 5, 9, 13]
+    new_col = [11, 22, 33, 44]
+    tiles_before   = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    tiles_desired  = [0, 11, 0, 0, 0, 22, 0, 0, 0, 33, 0, 0, 0, 44, 0, 0]
 
-print(new_tiles)
+    tiles_after = list(tiles_before)
+    for ind_val in zip(col_idx, new_col):
+        # id_val is a tuple such as (1, a) or (5, b) etc.
+        i, v = ind_val
+        tiles_after[i] = v
 
-print(tiles())
+    print(tiles_before)
+    print(tiles_after)
+    print(tiles_desired)
+
+if __name__ == '__main__':
+    main2()
