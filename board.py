@@ -42,9 +42,43 @@ class Board:
         # TODO: randomize first tiles
 
     def swipe_down(self):
-        new_tiles = []*self.size**2
-        for c in self.col_idx:
+        columns = self.col_idx
+        self._swipe_board(columns)
+
+    def swipe_up(self):
+        columns = reversed(self.col_idx)
+        self._swipe_board(columns)
+
+    def swipe_right(self):
+        rows = self.row_idx
+        self._swipe_board(rows)
+
+    def swipe_left(self):
+        rows = reversed(self.row_idx)
+        self._swipe_board(rows)
+
+    def _swipe_board(self, lines):
+        same_board = True
+        empty_tiles_indices = []
+        for line in lines:
+            old_line = [self.tiles[j] for j in line]
+            n_zeroes, new_line = swipe(old_line)
+            if old_line != new_line:
+                same_board = False
+            empty_tiles_indices += line[0:n_zeroes]
+            self._update_tiles(new_line, line)
+
+        if len(empty_tiles_indices) is 1:
+            # TODO: implement Game over
             pass
+        elif same_board:
+            pass # Do nothing
+        else:
+            # Normal case, add new tile = 1,2 w 10,90% prob resp.
+            # TODO
+            pass
+
+
 
     def _update_tiles(self, new_tiles, indices):
         for index_value in zip(indices, new_tiles):
