@@ -78,8 +78,6 @@ class Board:
             # TODO
             pass
 
-
-
     def _update_tiles(self, new_tiles, indices):
         for index_value in zip(indices, new_tiles):
             i,v = index_value
@@ -92,9 +90,9 @@ class Board:
             rep += "  ".join(l) + "\n"
         return rep
 
+
 if __name__ == "__main__":
     b = Board(size=4)
     b.tiles = [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1]
     print(b)
     b.swipe_down()
-
